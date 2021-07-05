@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>Earthquake Heatmap</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+</head>
+
+<body>
+    <div id="mapid" style="width:100%; height:100%; position:fixed; left:0;top:0;overflow:hidden;z-index:-1;"></div>
+</body>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+<script src="https://unpkg.com/leaflet.nontiledlayer@1.0.9/dist/NonTiledLayer.js"></script>
+<script>
+    var map = L.map('mapid').setView([36.2048, 138.2529], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.nonTiledLayer.wms('/wms', {
+        format: 'image/png',
+        transparent: true,
+        attribution: 'Earthquake Heatmap'
+    }).addTo(map);
+</script>
+
+</html>
